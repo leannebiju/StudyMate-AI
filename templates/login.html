@@ -44,6 +44,49 @@
         .btn-custom:hover {
             background-color: rgb(75, 35, 120); /* Darker purple on hover */
         }
+
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px; /* Smaller modal box */
+            text-align: center; /* Center text */
+        }
+
+        /* Styling for OK button */
+        .btn-ok {
+            background-color: rgb(97, 48, 156);
+            border: none;
+            color: white;
+            padding: 8px 16px; /* Padding for button */
+            font-size: 14px; /* Smaller font size */
+            cursor: pointer;
+            margin-top: 20px; /* Add some space between message and button */
+        }
+
+        .btn-ok:hover {
+            background-color: rgb(75, 35, 120);
+        }
+
+        /* Remove the close button */
+        .close {
+            display: none;
+        }
     </style>
 </head>
 <body class="d-flex justify-content-center align-items-center">
@@ -69,6 +112,33 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal for wrong password -->
+    <div id="wrongPasswordModal" class="modal">
+        <div class="modal-content">
+            <p>Oops! Wrong Password. Try Again.</p>
+            <button class="btn-ok" onclick="closeModal()">OK</button>
+        </div>
+    </div>
+
+    <!-- Hidden element to pass flash message to JavaScript -->
+    <div id="flashMessage" style="display: none;">{{ get_flashed_messages() | join('') }}</div>
+
+    <!-- JavaScript to trigger the modal if a flash message exists -->
+    <script>
+        // Check if there are flash messages
+        var flashMessage = document.getElementById('flashMessage').innerText;
+
+        if (flashMessage.includes("Oops! Wrong Password.")) {
+            // Show the modal if the message matches
+            document.getElementById("wrongPasswordModal").style.display = "block";
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById("wrongPasswordModal").style.display = "none";
+        }
+    </script>
 
 </body>
 </html>

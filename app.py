@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify, flash
 import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_cors import CORS
@@ -60,7 +60,7 @@ def register():
 
     return render_template('register.html')
 
-# Login Route
+# Updated Login Route with Flash Message
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -78,7 +78,8 @@ def login():
             session['user_email'] = user[1]
             return redirect(url_for('dashboard'))
         else:
-            return "Invalid credentials!"
+            flash("Oops! Wrong Password.")  # Flash message for wrong password
+            return redirect(url_for('login'))
     
     return render_template('login.html')
 
@@ -132,12 +133,10 @@ def solve_doubt():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-    
 
 @app.route('/flashcards')
 def flashcards():
     return render_template("flashcards.html")
-
 
 @app.route('/generate_flashcards', methods=['POST'])
 def generate_flashcards():
@@ -160,7 +159,6 @@ def generate_flashcards():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-
 @app.route('/sticky_notes')
 def sticky_notes():
     if 'user_id' not in session:
@@ -173,7 +171,6 @@ def sticky_notes():
     conn.close()
 
     return render_template("sticky_notes.html", notes=notes)
-
 
 @app.route('/add_note', methods=['POST'])
 def add_note():
@@ -194,7 +191,6 @@ def add_note():
     conn.close()
 
     return jsonify({"id": note_id, "note": note_text})
-
 
 @app.route('/delete_note/<int:note_id>', methods=['DELETE'])
 def delete_note(note_id):
