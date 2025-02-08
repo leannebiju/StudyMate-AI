@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='pomodoro.css') }}">
+    <script defer src="{{ url_for('static', filename='pomodoro.js') }}"></script>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="topbar">
+        <a href="/dashboard" class="btn btn-outline-light">Dashboard</a>
+        <span class="feature-name">Pomodoro Timer</span>
+        <a href="/logout" class="btn btn-outline-light">Logout</a>
+    </div>
+
+    <!-- Pomodoro Timer Content -->
+    <div class="content">
+        <h2>Pomodoro Timer</h2>
+        <p id="timer-message">Start your Pomodoro session!</p>
+        <div class="timer">
+            <h1 id="time-display">25:00</h1>
+            <button id="start-btn" class="btn btn-primary">Start</button>
+            <button id="reset-btn" class="btn btn-secondary">Reset</button>
+        </div>
+        
+        <!-- Restart & Cancel Buttons (Hidden Initially) -->
+        <div id="button-container" style="display: none; margin-top: 10px;">
+            <button id="restart-btn" class="btn btn-success">Start Over</button>
+            <button id="cancel-btn" class="btn btn-danger">Cancel</button>
+        </div>
+    </div>
+
+</body>
+</html>

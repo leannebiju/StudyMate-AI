@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Generator</title>
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}"> -->
+</head>
+<body>
+    <div class="container">
+        <h2>AI-Powered Quiz Generator</h2>
+
+        <input type="text" id="quizTopic" placeholder="Enter Quiz Topic">
+
+        <select id="quizDifficulty">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+        </select>
+
+        <select id="quizNumQuestions">
+            <option value="5">5 Questions</option>
+            <option value="10">10 Questions</option>
+            <option value="15">15 Questions</option>
+        </select>
+
+        <button onclick="generateQuiz()">Start Quiz</button>
+
+        <div id="quizContainer"></div>
+        <div id="quizResult"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='quiz.js') }}"></script>
+</body>
+</html>

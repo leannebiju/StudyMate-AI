@@ -3,6 +3,7 @@ import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_cors import CORS
 import google.generativeai as genai
+import re
 
 # Initialize Flask
 app = Flask(__name__)
@@ -134,10 +135,8 @@ def solve_doubt():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route('/flashcards')
-def flashcards():
-    return render_template("flashcards.html")
 
+<<<<<<< Updated upstream
 @app.route('/generate_flashcards', methods=['POST'])
 def generate_flashcards():
     try:
@@ -158,6 +157,9 @@ def generate_flashcards():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+=======
+
+>>>>>>> Stashed changes
 
 @app.route('/sticky_notes')
 def sticky_notes():
@@ -216,6 +218,81 @@ def logout():
 def todo():
     return render_template("todo.html")
 
+@app.route('/pomodoro')
+def pomodoro():
+    return render_template('pomodoro.html')
 
-if __name__ == '__main__':
+@app.route('/generate_quiz')
+def quiz():
+    return render_template('quiz.html')
+@app.route('/generate_quiz', methods=['POST'])
+def generate_quiz():
+    try:
+        data = request.get_json()
+        topic = data.get('topic', 'General Knowledge')
+        difficulty = data.get('difficulty', 'medium')
+        num_questions = data.get('num_questions', 5)
+
+        if not topic:
+            return jsonify({"error": "Topic is required"}), 400
+
+        prompt = f"""
+        Generate exactly {num_questions} {difficulty}-level multiple-choice quiz questions on {topic}.
+        Each question must have four answer choices labeled as A, B, C, and D.
+        Provide the correct answer after each question.
+
+        Format:
+        Q1: What is the capital of France?
+        A) Paris
+        B) London
+        C) Rome
+        D) Madrid
+        Correct Answer: A
+
+        **Provide only the questions and answers in this exact format.**
+        """
+
+        model = genai.GenerativeModel("gemini-pro")
+        response = model.generate_content(prompt)
+
+        if not response or not response.text:
+            return jsonify({"error": "AI failed to generate a quiz."}), 500
+
+        quiz_questions = parse_quiz_response(response.text.strip())
+        return jsonify({"quiz": quiz_questions})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+
+
+def parse_quiz_response(ai_response):
+    quiz_questions = []
+    questions = re.findall(r'Q\d+: (.+?)\nA\)', ai_response, re.DOTALL)
+    options = re.findall(r'A\) (.+?)\nB\) (.+?)\nC\) (.+?)\nD\) (.+?)\nCorrect Answer: (.)', ai_response)
+
+    for i, (question, *choices, correct_answer) in enumerate(zip(questions, *zip(*options))):
+        quiz_questions.append({
+            "question": question.strip(),
+            "options": {
+                "A": choices[0].strip(),
+                "B": choices[1].strip(),
+                "C": choices[2].strip(),
+                "D": choices[3].strip()
+            },
+            "correct_answer": correct_answer.strip()
+        })
+
+    return quiz_questions
+
+
+
+
+if __name__ == "__main__":
     app.run(debug=True)
+
+
+
+
+
