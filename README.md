@@ -33,8 +33,8 @@ With StudyMate AI, students can plan, learn, and revise smarter, making studying
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- [Languages used]
-- [Frameworks used]
+- HTML, CSS, JavaScript
+- Flask
 - [Libraries used]
 - [Tools used]
 
