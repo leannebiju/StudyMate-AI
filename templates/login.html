@@ -55,10 +55,12 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: rgba(255, 255, 255, 0.5); /* Transparent white background */
             padding-top: 60px;
+            animation: slideInFromTop 0.5s ease-out forwards; /* Animation for modal */
         }
 
+        /* Modal content */
         .modal-content {
             background-color: #fefefe;
             margin: 10% auto;
@@ -81,6 +83,18 @@
 
         .btn-ok:hover {
             background-color: rgb(75, 35, 120);
+        }
+
+        /* Keyframe for up-to-down transition */
+        @keyframes slideInFromTop {
+            from {
+                transform: translateY(-100%); /* Start from above the screen */
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0); /* End at its normal position */
+                opacity: 1;
+            }
         }
 
         /* Remove the close button */
