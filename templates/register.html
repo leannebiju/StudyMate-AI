@@ -1,15 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <!-- Link to Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Link to Pompiere font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Pompiere&display=swap" rel="stylesheet">
+    
+    <!-- Custom styles -->
+    <style>
+        body {
+            background-image: url('https://i.pinimg.com/originals/2a/be/e4/2abee4e7a6adacf15aa8ee6c8931c92e.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh; /* Full viewport height */
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.85); /* Translucent white background */
+            padding: 30px;
+            width: 100%;
+            max-width: 400px; /* Fixed width */
+            border-radius: 20px; /* Rounded corners */
+        }
+
+        h2 {
+            text-transform: uppercase; /* Uppercase text */
+            font-weight: bold;
+            font-family: 'Pompiere', sans-serif; /* Pompiere font */
+            color: rgb(97, 48, 156); /* Purple */
+        }
+
+        .btn-custom {
+            background-color: rgb(97, 48, 156); /* Purple background */
+            border: none;
+            color: white;
+        }
+
+        .btn-custom:hover {
+            background-color: rgb(75, 35, 120); /* Darker purple on hover */
+        }
+    </style>
 </head>
-<body>
-    <h2>Register</h2>
-    <form method="POST">
-        Email: <input type="email" name="email" required><br>
-        Password: <input type="password" name="password" required><br>
-        <button type="submit">Register</button>
-    </form>
-    <a href="/login">Already have an account? Login</a>
+<body class="d-flex justify-content-center align-items-center">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <h2 class="text-center mb-4">Register</h2>
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password:</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-custom w-100">Register</button>
+                </form>
+                <p class="mt-3 text-center">
+                    <a href="/login">Already have an account? Login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
