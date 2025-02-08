@@ -44,7 +44,30 @@
         .btn-custom:hover {
             background-color: rgb(75, 35, 120); /* Darker purple on hover */
         }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            display: none;
+        }
     </style>
+
+    <script>
+        function validatePassword() {
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirm_password").value;
+            let errorMessage = document.getElementById("passwordError");
+            let submitBtn = document.getElementById("registerBtn");
+
+            if (password !== confirmPassword) {
+                errorMessage.style.display = "block";  // Show error message
+                submitBtn.disabled = true;  // Disable button
+            } else {
+                errorMessage.style.display = "none";  // Hide error message
+                submitBtn.disabled = false;  // Enable button
+            }
+        }
+    </script>
 </head>
 <body class="d-flex justify-content-center align-items-center">
 
@@ -54,14 +77,27 @@
                 <h2 class="text-center mb-4">Register</h2>
                 <form method="POST">
                     <div class="mb-3">
+                        <label for="name" class="form-label">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="mb-3">
                         <label for="email" class="form-label">Email:</label>
                         <input type="email" class="form-control" id="email" name="email" required>
                     </div>
+                    
                     <div class="mb-3">
                         <label for="password" class="form-label">Password:</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
+                        <input type="password" class="form-control" id="password" name="password" required onkeyup="validatePassword()">
                     </div>
-                    <button type="submit" class="btn btn-custom w-100">Register</button>
+                    
+                    <div class="mb-3">
+                        <label for="confirm_password" class="form-label">Confirm Password:</label>
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" required onkeyup="validatePassword()">
+                        <span id="passwordError" class="error-message">Passwords do not match</span>
+                    </div>
+
+                    <button type="submit" class="btn btn-custom w-100" id="registerBtn" disabled>Register</button>
                 </form>
                 <p class="mt-3 text-center">
                     <a href="/login">Already have an account? Login</a>

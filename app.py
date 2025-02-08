@@ -18,9 +18,10 @@ def init_db():
     conn = sqlite3.connect('users.db')
     cursor = conn.cursor()
     
-    # Create users table
+    # Create users table with a name column
     cursor.execute('''CREATE TABLE IF NOT EXISTS users (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        name TEXT NOT NULL,
                         email TEXT UNIQUE NOT NULL,
                         password TEXT NOT NULL)''')
     
@@ -36,6 +37,7 @@ def init_db():
 
 init_db()
 
+
 # Home Route
 @app.route('/')
 def home():
@@ -45,6 +47,7 @@ def home():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
+        name = request.form['name']  # Get name from form
         email = request.form['email']
         password = request.form['password']
         hashed_password = generate_password_hash(password)
@@ -52,7 +55,8 @@ def register():
         conn = sqlite3.connect('users.db')
         cursor = conn.cursor()
         try:
-            cursor.execute("INSERT INTO users (email, password) VALUES (?, ?)", (email, hashed_password))
+            cursor.execute("INSERT INTO users (name, email, password) VALUES (?, ?, ?)", 
+                           (name, email, hashed_password))
             conn.commit()
             conn.close()
             return redirect(url_for('login'))
@@ -60,6 +64,7 @@ def register():
             return "Email already registered!"
 
     return render_template('register.html')
+
 
 # Updated Login Route with Flash Message
 @app.route('/login', methods=['GET', 'POST'])
@@ -74,9 +79,10 @@ def login():
         user = cursor.fetchone()
         conn.close()
         
-        if user and check_password_hash(user[2], password):
-            session['user_id'] = user[0]  # Store user ID in session
-            session['user_email'] = user[1]
+        if user and check_password_hash(user[2], password):  # user[2] is the hashed password
+            session['user_id'] = user[0]   # Store user ID
+            session['user_email'] = user[1]  # Store user email
+            session['user_name'] = user[3]  # Store correct user name (FIXED!)
             return redirect(url_for('dashboard'))
         else:
             flash("Oops! Wrong Password.")  # Flash message for wrong password
@@ -84,26 +90,29 @@ def login():
     
     return render_template('login.html')
 
+
 # Dashboard Route
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
     if 'user_id' not in session:
-        return redirect(url_for('login'))
+        return redirect(url_for('login'))  # Redirect to login if user is not logged in
 
     conn = sqlite3.connect('users.db')
     cursor = conn.cursor()
 
     if request.method == 'POST':
         note = request.form['note']
-        cursor.execute("INSERT INTO notes (user_id, note) VALUES (?, ?)", (session['user_id'], note))
-        conn.commit()
+        if note.strip():  # Prevent inserting empty notes
+            cursor.execute("INSERT INTO notes (user_id, note) VALUES (?, ?)", (session['user_id'], note))
+            conn.commit()
 
     # Fetch user notes
     cursor.execute("SELECT note FROM notes WHERE user_id = ?", (session['user_id'],))
-    notes = cursor.fetchall()
+    notes = [row[0] for row in cursor.fetchall()]  # Extract notes from tuples
     conn.close()
 
-    return render_template('dashboard.html', user=session['user_email'], notes=notes)
+    return render_template('dashboard.html', user=session.get('user_name', 'User'), notes=notes)
+
 
 # AI Chatbot Route
 @app.route('/chatbot')
