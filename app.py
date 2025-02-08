@@ -134,10 +134,7 @@ def solve_doubt():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-<<<<<<< Updated upstream
 
-
-<<<<<<< Updated upstream
 @app.route('/generate_flashcards', methods=['POST'])
 def generate_flashcards():
     try:
@@ -158,15 +155,6 @@ def generate_flashcards():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-=======
-
->>>>>>> Stashed changes
-=======
-    
-
-
-
->>>>>>> Stashed changes
 
 @app.route('/sticky_notes')
 def sticky_notes():
