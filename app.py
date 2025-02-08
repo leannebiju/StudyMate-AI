@@ -4,6 +4,18 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_cors import CORS
 import google.generativeai as genai
 import re
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Get API key from environment variable
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+
+# Configure Gemini AI
+genai.configure(api_key=GEMINI_API_KEY)
+
 
 # Initialize Flask
 app = Flask(__name__)
@@ -11,7 +23,7 @@ app.secret_key = 'your_secret_key'
 CORS(app)
 
 # Configure Gemini AI
-genai.configure(api_key="AIzaSyBY-_MlcCJaJpN-BPWCV25IhRaPeTYPJuE")  # Replace with your actual API key
+#genai.configure(api_key="AIzaSyBY-_MlcCJaJpN-BPWCV25IhRaPeTYPJuE")  # Replace with your actual API key
 
 # Database setup
 def init_db():
