@@ -134,8 +134,10 @@ def solve_doubt():
         return jsonify({"error": str(e)}), 500
     
 
+@app.route('/flashcards')
 def flashcards():
     return render_template("flashcards.html")
+
 
 @app.route('/generate_flashcards', methods=['POST'])
 def generate_flashcards():
@@ -157,6 +159,55 @@ def generate_flashcards():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+
+@app.route('/sticky_notes')
+def sticky_notes():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    
+    conn = sqlite3.connect('users.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, note FROM notes WHERE user_id = ?", (session['user_id'],))
+    notes = cursor.fetchall()
+    conn.close()
+
+    return render_template("sticky_notes.html", notes=notes)
+
+
+@app.route('/add_note', methods=['POST'])
+def add_note():
+    if 'user_id' not in session:
+        return jsonify({"error": "Unauthorized"}), 403
+
+    data = request.get_json()
+    note_text = data.get("note", "").strip()
+
+    if not note_text:
+        return jsonify({"error": "Note cannot be empty"}), 400
+
+    conn = sqlite3.connect('users.db')
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO notes (user_id, note) VALUES (?, ?)", (session['user_id'], note_text))
+    conn.commit()
+    note_id = cursor.lastrowid
+    conn.close()
+
+    return jsonify({"id": note_id, "note": note_text})
+
+
+@app.route('/delete_note/<int:note_id>', methods=['DELETE'])
+def delete_note(note_id):
+    if 'user_id' not in session:
+        return jsonify({"error": "Unauthorized"}), 403
+
+    conn = sqlite3.connect('users.db')
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM notes WHERE id = ? AND user_id = ?", (note_id, session['user_id']))
+    conn.commit()
+    conn.close()
+
+    return jsonify({"success": True})
 
 # Logout Route
 @app.route('/logout')
