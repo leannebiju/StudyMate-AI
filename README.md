@@ -17,10 +17,18 @@
 [2-3 lines about what your project does]
 
 ### The Problem statement
-[What ridiculous problem are you solving?]
+Students face challenges in managing their study schedules, revising effectively, and finding quick answers to their doubts. Traditional learning methods often lead to inefficient time management and difficulty in retaining information.
+
 
 ### The Solution
-[How are you solving it? Keep it fun!]
+StudyMate AI solves this by integrating AI-powered learning tools to enhance productivity and engagement. It offers:
+
+Flashcards for quick and effective revision.
+To-Do Lists to track study goals and tasks.
+AI-Powered Quiz Generator for interactive self-assessment.
+AI Chatbot for instant doubt resolution.
+Dark/Light Mode Toggle for a personalized learning experience.
+With StudyMate AI, students can plan, learn, and revise smarter, making studying more effective and enjoyable.
 
 ## Technical Details
 ### Technologies/Components Used
