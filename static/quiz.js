@@ -28,11 +28,16 @@ async function generateQuiz() {
     }
 }
 
+
+
+
 function displayQuiz(quizQuestions) {
     let quizContainer = document.getElementById("quizContainer");
     quizContainer.innerHTML = "";
 
     quizQuestions.forEach((q, index) => {
+        let questionId = `answer-${index}`; // Unique ID for each answer section
+
         let questionHTML = `<div class="question">
             <p><strong>Q${index + 1}:</strong> ${q.question}</p>
             <ul>
@@ -41,9 +46,22 @@ function displayQuiz(quizQuestions) {
                 <li>C) ${q.options.C}</li>
                 <li>D) ${q.options.D}</li>
             </ul>
-            <p><strong>Correct Answer:</strong> ${q.correct_answer}</p>
+            <button onclick="showAnswer('${questionId}')">Show Answer</button>
+            <p id="${questionId}" style="display: none;"><strong>Correct Answer:</strong> ${q.correct_answer}</p>
         </div>`;
+
         quizContainer.innerHTML += questionHTML;
     });
 }
+
+// Function to reveal the correct answer when the button is clicked
+function showAnswer(answerId) {
+    let answerElement = document.getElementById(answerId);
+    if (answerElement.style.display === "none") {
+        answerElement.style.display = "block";
+    } else {
+        answerElement.style.display = "none";
+    }
+}
+
 
