@@ -7,7 +7,7 @@
 
 ### Team Members
 - Member 1: Anusree U - CUSAT
-- Member 2: Leanne Roselyn Biju - CUSAT
+- Member 2: Leanne Roslyn Biju - CUSAT
 - Member 3: Christina Jogy - CUSAT
 
 ### Hosted Project Link
