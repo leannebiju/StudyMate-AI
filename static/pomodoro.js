@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-    let workTime = 0.1 * 60;  // 25 minutes
-    let breakTime = 0.1 * 60;  // 5 minutes
+    let workTime = 25 * 60;  // 25 minutes
+    let breakTime = 5 * 60;  // 5 minutes
     let timeLeft = workTime;
     let isBreak = false;
     let timerInterval = null;

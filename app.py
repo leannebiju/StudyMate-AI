@@ -47,6 +47,7 @@ def home():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
+        session.clear()
         name = request.form['name']  # Get name from form
         email = request.form['email']
         password = request.form['password']
@@ -70,6 +71,7 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
+        session.clear()
         email = request.form['email']
         password = request.form['password']
         
@@ -97,21 +99,9 @@ def dashboard():
     if 'user_id' not in session:
         return redirect(url_for('login'))  # Redirect to login if user is not logged in
 
-    conn = sqlite3.connect('users.db')
-    cursor = conn.cursor()
 
-    if request.method == 'POST':
-        note = request.form['note']
-        if note.strip():  # Prevent inserting empty notes
-            cursor.execute("INSERT INTO notes (user_id, note) VALUES (?, ?)", (session['user_id'], note))
-            conn.commit()
 
-    # Fetch user notes
-    cursor.execute("SELECT note FROM notes WHERE user_id = ?", (session['user_id'],))
-    notes = [row[0] for row in cursor.fetchall()]  # Extract notes from tuples
-    conn.close()
-
-    return render_template('dashboard.html', user=session.get('user_name', 'User'), notes=notes)
+    return render_template('dashboard.html', user=session.get('user_name', 'User'))
 
 
 # AI Chatbot Route
@@ -216,6 +206,7 @@ def delete_note(note_id):
 def logout():
     session.pop('user_id', None)
     session.pop('user_email', None)
+    session.clear()
     return redirect(url_for('home'))
 
 @app.route("/todo")
