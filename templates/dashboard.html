@@ -1,23 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <script defer src="{{ url_for('static', filename='dashboard.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
 </head>
 <body>
-    <h2>Welcome, {{ user }}</h2>
 
-    <h3>Your Notes</h3>
-    <form method="POST">
-        <textarea name="note" required></textarea><br>
-        <button type="submit">Add Note</button>
-    </form>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <ul>
+            <li><a href="/dashboard"><i class="fa-solid fa-house"></i><span> Dashboard</span></a></li>
+            <li>
+                <a href="/sticky_notes">
+                    <i class="fa-solid fa-note-sticky"></i>
+                    <span>Sticky Notes</span>
+                </a>
+            </li>
+            
+            
+            <li><a href="/chatbot"><i class="fa-solid fa-robot"></i><span> Chatbot</span></a></li>
+            <li><a href="/logout" class="logout"><i class="fa-solid fa-sign-out-alt"></i><span> Logout</span></a></li>
 
-    <ul>
-        {% for note in notes %}
-            <li>{{ note[0] }}</li>
-        {% endfor %}
-    </ul>
+        </ul>
+    </div>
 
-    <a href="{{ url_for('logout') }}">Logout</a>
+    <!-- Main Content -->
+    <div class="content">
+        <h2>Welcome, {{ user }}</h2>
+
+
+        <!-- Notes Section -->
+        <!-- <div class="card mt-3">
+            <div class="card-header">Your Notes</div>
+            <div class="card-body">
+                <form id="noteForm" method="POST">
+                    <textarea class="form-control" name="note" id="noteInput" placeholder="Write a note..." required></textarea>
+                    <button type="submit" class="btn btn-primary mt-2">Save Note</button>
+                </form>
+
+                <h5 class="mt-4">Saved Notes:</h5>
+                <ul class="list-group" id="notesList">
+                    {% for note in notes %}
+                        <li class="list-group-item">{{ note[0] }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div> -->
+    </div>
+
 </body>
 </html>
