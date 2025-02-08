@@ -134,6 +134,7 @@ def solve_doubt():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+<<<<<<< Updated upstream
 
 
 <<<<<<< Updated upstream
@@ -158,6 +159,12 @@ def generate_flashcards():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 =======
+
+>>>>>>> Stashed changes
+=======
+    
+
+
 
 >>>>>>> Stashed changes
 
