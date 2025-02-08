@@ -55,28 +55,43 @@ init_db()
 def home():
     return render_template('home.html')
 
-# Register Route
+def get_db_connection():
+    conn = sqlite3.connect('users.db')
+    conn.row_factory = sqlite3.Row  # Enables dictionary-like row access
+    return conn
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        session.clear()
-        name = request.form['name']  # Get name from form
+        name = request.form['name']
         email = request.form['email']
         password = request.form['password']
-        hashed_password = generate_password_hash(password)
+        hashed_password = generate_password_hash(password)  # Hash the password
 
-        conn = sqlite3.connect('users.db')
+        conn = get_db_connection()
         cursor = conn.cursor()
-        try:
-            cursor.execute("INSERT INTO users (name, email, password) VALUES (?, ?, ?)", 
-                           (name, email, hashed_password))
-            conn.commit()
+
+        # Check if the email is already registered
+        cursor.execute("SELECT * FROM users WHERE email = ?", (email,))
+        existing_user = cursor.fetchone()
+
+        if existing_user:
+            flash("This email is already registered", "error")  # Flash message
             conn.close()
-            return redirect(url_for('login'))
-        except sqlite3.IntegrityError:
-            return "Email already registered!"
+            return redirect(url_for('register'))  # Redirect back to registration page
+
+        # Insert new user if email is not found
+        cursor.execute("INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
+                       (name, email, hashed_password))
+        conn.commit()
+        conn.close()
+
+        flash("Registration successful! You can now log in.", "success")
+        return redirect(url_for('login'))  # Redirect to login page
 
     return render_template('register.html')
+
+
 
 
 # Updated Login Route with Flash Message
