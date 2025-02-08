@@ -182,3 +182,18 @@ body {
     background-color: #181818;
     color: white;
 }
+/* To-Do List Styling */
+#todoList {
+    list-style: none;
+    padding: 0;
+}
+
+#todoList .list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#todoList .btn-sm {
+    font-size: 12px;
+}

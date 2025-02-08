@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <script defer src="{{ url_for('static', filename='todo.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <ul>
+            <li><a href="/dashboard"><i class="fa-solid fa-house"></i><span> Dashboard</span></a></li>
+            <li><a href="/sticky_notes"><i class="fa-solid fa-note-sticky"></i><span> Sticky Notes</span></a></li>
+            <li><a href="/chatbot"><i class="fa-solid fa-robot"></i><span> Chatbot</span></a></li>
+            <li><a href="/todo" class="active"><i class="fa-solid fa-list-check"></i><span> To-Do List</span></a></li>
+            <li><a href="/logout" class="logout"><i class="fa-solid fa-sign-out-alt"></i><span> Logout</span></a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h2>To-Do List</h2>
+        <form id="todoForm">
+            <input type="text" id="todoInput" class="form-control" placeholder="Enter task..." required>
+            <input type="time" id="todoTime" class="form-control mt-2" required>
+            <button type="submit" class="btn btn-primary mt-2">Add Task</button>
+        </form>
+        <ul class="list-group mt-3" id="todoList"></ul>
+    </div>
+
+</body>
+</html>

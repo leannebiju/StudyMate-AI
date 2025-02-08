@@ -216,5 +216,10 @@ def logout():
     session.pop('user_email', None)
     return redirect(url_for('home'))
 
+@app.route("/todo")
+def todo():
+    return render_template("todo.html")
+
+
 if __name__ == '__main__':
     app.run(debug=True)
