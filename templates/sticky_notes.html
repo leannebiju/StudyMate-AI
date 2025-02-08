@@ -4,36 +4,209 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sticky Notes</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Pompiere&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://i.pinimg.com/originals/2a/be/e4/2abee4e7a6adacf15aa8ee6c8931c92e.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            color: #333;
+            display: flex;
+            margin: 0;
+            transition: all 0.3s ease;
+        }
+        .sidebar {
+            background-color: rgba(255, 255, 255, 0.85);
+            width: 80px;
+            padding: 10px;
+            border-radius: 15px;
+            margin-top: 10px;
+            position: fixed;
+            transition: all 0.3s ease;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        .sidebar:hover {
+            width: 250px;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        .sidebar ul li a,
+        .logout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgb(97, 48, 156);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 10px 15px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        .sidebar ul li a i,
+        .logout i {
+            font-size: 20px;
+        }
+        .sidebar ul li a span,
+        .logout span {
+            display: none;
+            margin-left: 10px;
+        }
+        .sidebar:hover ul li a,
+        .sidebar:hover .logout {
+            justify-content: flex-start;
+            padding-left: 15px;
+        }
+        .sidebar:hover ul li a span,
+        .sidebar:hover .logout span {
+            display: inline-block;
+        }
+        .logout {
+            margin-top: auto;
+            position: relative;
+            bottom: 40px;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            margin-left: 80px;
+            margin-top: 20px;
+            transition: margin-left 0.3s ease;
+            width: calc(100% - 80px);
+        }
+        .sidebar:hover + .content {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+        }
+        .top-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 10px 20px;
+            border-radius: 15px;
+        }
+        .top-bar-title {
+            font-family: 'Pompiere', sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: rgb(97, 48, 156);
+        }
+        .container {
+            width: 100%;
+            margin-top: 20px;
+            padding: 0 20px;
+        }
+        #noteInput {
+            width: 100%;
+            height: 100px;
+        }
+        .btn-custom {
+            background-color: rgb(97, 48, 156);
+            border: none;
+            color: white;
+            border-radius: 8px;
+            padding: 8px 16px;
+            width: 100%;
+        }
+        .btn-custom:hover {
+            background-color: rgb(75, 35, 120);
+        }
+        #notesContainer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .sticky-note {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 10px;
+            width: 180px;
+            min-height: 120px;
+            text-align: center;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            position: relative;
+            font-family: 'Pompiere', sans-serif;
+        }
+        .sticky-note button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            border: none;
+            background: rgb(97, 48, 156);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .sticky-note button:hover {
+            background: rgb(75, 35, 120);
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                margin-top: 0;
+            }
+            .content {
+                margin-left: 0;
+                width: 100%;
+            }
+            .container {
+                width: 100%;
+                padding: 10px;
+            }
+            .sticky-note {
+                width: 140px;
+                min-height: 100px;
+            }
+        }
+    </style>
 </head>
 <body>
-
-    <!-- Top Navigation Bar (Same as Chatbot) -->
-    <div class="top-bar">
-        <h3 class="top-bar-title">Sticky Notes</h3>
-        <div class="top-bar-buttons">
-            <button onclick="window.location.href='/dashboard'" class="btn btn-primary">Dashboard</button>
-            <button onclick="window.location.href='/logout'" class="btn btn-danger">Logout</button>
+    <div class="sidebar">
+        <ul>
+            <li><a href="/dashboard"><i class="fa-solid fa-house"></i><span>Dashboard</span></a></li>
+            <li><a href="/sticky_notes"><i class="fa-solid fa-note-sticky"></i><span>Sticky Notes</span></a></li>
+            <li><a href="/todo"><i class="fa-solid fa-list-check"></i><span>To-Do List</span></a></li>
+            <li><a href="/chatbot"><i class="fa-solid fa-robot"></i><span>Chatbot</span></a></li>
+            <li><a href="#" id="darkModeToggle"><i class="fa-solid fa-moon"></i><span>Dark Mode</span></a></li>
+        </ul>
+        <a href="/logout" class="logout"><i class="fa-solid fa-sign-out-alt"></i><span>Logout</span></a>
+    </div>
+    
+    <div class="content">
+        <div class="top-bar">
+            <h3 class="top-bar-title">Sticky Notes</h3>
+        </div>
+        <div class="container mt-4">
+            <textarea id="noteInput" class="form-control mt-2" placeholder="Enter your note here..."></textarea>
+            <button class="btn btn-custom mt-2" onclick="addStickyNote()">Add Note</button>
+            <div id="notesContainer" class="mt-3">
+                {% for note in notes %}
+                    <div class="sticky-note" id="note-{{ note[0] }}">
+                        <p>{{ note[1] }}</p>
+                        <button onclick="deleteNote({{ note[0] }})">X</button>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
-
-    <!-- Main Container -->
-    <div class="container mt-4">
-        <textarea id="noteInput" class="form-control mt-2" placeholder="Enter your note here..."></textarea>
-        <button class="btn btn-primary mt-2" onclick="addStickyNote()">Add Note</button>
-
-        <div id="notesContainer" class="d-flex flex-wrap mt-3">
-            {% for note in notes %}
-                <div class="sticky-note" id="note-{{ note[0] }}">
-                    <p>{{ note[1] }}</p>
-                    <button class="btn btn-danger btn-sm" onclick="deleteNote({{ note[0] }})">X</button>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-
     <script src="{{ url_for('static', filename='sticky_notes.js') }}"></script>
 </body>
 </html>
