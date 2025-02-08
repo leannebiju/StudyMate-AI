@@ -2,7 +2,7 @@ function askAI() {
     let userQuestion = document.getElementById("chatInput").value;
     let responseField = document.getElementById("chatResponse");
 
-    if (!userQuestion) {
+    if (!userQuestion.trim()) {
         responseField.innerText = "Please enter a question.";
         return;
     }
