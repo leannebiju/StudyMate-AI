@@ -6,9 +6,9 @@
 
 
 ### Team Members
-- Member 1: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Member 1: Anusree U - CUSAT
+- Member 2: Leanne Roselyn Biju - CUSAT
+- Member 3: Christina Jogy - CUSAT
 
 ### Hosted Project Link
 [mention your project hosted project link here]
