@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-    let workTime = 25 * 60;  // 25 minutes
-    let breakTime = 5 * 60;  // 5 minutes
+    let workTime = 25 * 60;
+    let breakTime = 5 * 60;
     let timeLeft = workTime;
     let isBreak = false;
     let timerInterval = null;
@@ -35,12 +35,12 @@ document.addEventListener("DOMContentLoaded", function () {
                         message.textContent = "Break Time! Relax for 5 minutes.";
                     } else {
                         message.textContent = "Pomodoro Session Complete!";
-                        buttonContainer.style.display = "block"; // Show restart/cancel buttons
+                        buttonContainer.style.display = "block";
                         return;
                     }
 
                     updateDisplay();
-                    startTimer();  // Automatically start break timer
+                    startTimer();
                 }
             }, 1000);
         }
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
         timeLeft = workTime;
         updateDisplay();
         message.textContent = "Start your Pomodoro session!";
-        buttonContainer.style.display = "none"; // Hide restart/cancel buttons
+        buttonContainer.style.display = "none";
     }
 
     function restartSession() {

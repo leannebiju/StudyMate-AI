@@ -36,7 +36,7 @@ function displayQuiz(quizQuestions) {
     quizContainer.innerHTML = "";
 
     quizQuestions.forEach((q, index) => {
-        let questionId = `answer-${index}`; // Unique ID for each answer section
+        let questionId = `answer-${index}`;
 
         let questionHTML = `<div class="question">
             <p><strong>Q${index + 1}:</strong> ${q.question}</p>

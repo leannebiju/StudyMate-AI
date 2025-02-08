@@ -4,48 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <!-- Link to Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Link to Pompiere font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Pompiere&display=swap" rel="stylesheet">
-    
-    <!-- Custom styles for font and background -->
     <style>
         body {
-            background-image: url('https://i.pinimg.com/originals/2a/be/e4/2abee4e7a6adacf15aa8ee6c8931c92e.jpg'); 
+            background-image: url('https://i.pinimg.com/originals/2a/be/e4/2abee4e7a6adacf15aa8ee6c8931c92e.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            height: 100vh; /* Full viewport height */
+            height: 100vh;
         }
-
         .container {
-            background-color: rgba(255, 255, 255, 0.85); /* More translucent white background */
+            background-color: rgba(255, 255, 255, 0.85);
             padding: 30px;
             width: 100%;
-            max-width: 400px; /* Fixed width */
-            border-radius: 20px; /* Rounded corners */
+            max-width: 400px;
+            border-radius: 20px;
         }
-
         h2 {
-            text-transform: uppercase; /* Make the text uppercase */
+            text-transform: uppercase;
             font-weight: bold;
-            font-family: 'Pompiere', sans-serif; /* Apply Pompiere font only to Login */
-            color: rgb(97, 48, 156); /* Purple color */
+            font-family: 'Pompiere', sans-serif;
+            color: rgb(97, 48, 156);
         }
-
         .btn-custom {
-            background-color: rgb(97, 48, 156); /* Purple background */
+            background-color: rgb(97, 48, 156);
             border: none;
             color: white;
         }
-
         .btn-custom:hover {
-            background-color: rgb(75, 35, 120); /* Darker purple on hover */
+            background-color: rgb(75, 35, 120);
         }
-
-        /* Modal Styling */
         .modal {
             display: none;
             position: fixed;
@@ -55,56 +44,46 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(255, 255, 255, 0.5); /* Transparent white background */
+            background-color: rgba(255, 255, 255, 0.5);
             padding-top: 60px;
-            animation: slideInFromTop 0.5s ease-out forwards; /* Animation for modal */
+            animation: slideInFromTop 0.5s ease-out forwards;
         }
-
-        /* Modal content */
         .modal-content {
             background-color: #fefefe;
             margin: 10% auto;
             padding: 20px;
             border: 1px solid #888;
-            width: 300px; /* Smaller modal box */
-            text-align: center; /* Center text */
+            width: 300px;
+            text-align: center;
         }
-
-        /* Styling for OK button */
         .btn-ok {
             background-color: rgb(97, 48, 156);
             border: none;
             color: white;
-            padding: 8px 16px; /* Padding for button */
-            font-size: 14px; /* Smaller font size */
+            padding: 8px 16px;
+            font-size: 14px;
             cursor: pointer;
-            margin-top: 20px; /* Add some space between message and button */
+            margin-top: 20px;
         }
-
         .btn-ok:hover {
             background-color: rgb(75, 35, 120);
         }
-
-        /* Keyframe for up-to-down transition */
         @keyframes slideInFromTop {
             from {
-                transform: translateY(-100%); /* Start from above the screen */
+                transform: translateY(-100%);
                 opacity: 0;
             }
             to {
-                transform: translateY(0); /* End at its normal position */
+                transform: translateY(0);
                 opacity: 1;
             }
         }
-
-        /* Remove the close button */
         .close {
             display: none;
         }
     </style>
 </head>
 <body class="d-flex justify-content-center align-items-center">
-
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
@@ -126,33 +105,21 @@
             </div>
         </div>
     </div>
-
-    <!-- Modal for wrong password -->
     <div id="wrongPasswordModal" class="modal">
         <div class="modal-content">
             <p>Oops! Wrong Password. Try Again.</p>
             <button class="btn-ok" onclick="closeModal()">OK</button>
         </div>
     </div>
-
-    <!-- Hidden element to pass flash message to JavaScript -->
     <div id="flashMessage" style="display: none;">{{ get_flashed_messages() | join('') }}</div>
-
-    <!-- JavaScript to trigger the modal if a flash message exists -->
     <script>
-        // Check if there are flash messages
         var flashMessage = document.getElementById('flashMessage').innerText;
-
         if (flashMessage.includes("Oops! Wrong Password.")) {
-            // Show the modal if the message matches
             document.getElementById("wrongPasswordModal").style.display = "block";
         }
-
-        // Function to close the modal
         function closeModal() {
             document.getElementById("wrongPasswordModal").style.display = "none";
         }
     </script>
-
 </body>
 </html>

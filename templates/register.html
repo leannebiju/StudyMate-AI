@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Pompiere font -->
     <link href="https://fonts.googleapis.com/css2?family=Pompiere&display=swap" rel="stylesheet">
     
-    <!-- Custom styles -->
     <style>
         body {
             background-image: url('https://i.pinimg.com/originals/2a/be/e4/2abee4e7a6adacf15aa8ee6c8931c92e.jpg'); 
@@ -35,7 +32,6 @@
             color: rgb(97, 48, 156);
         }
 
-        /* Default button styles */
         .btn-custom {
             border: none;
             color: white;
@@ -44,13 +40,11 @@
             transition: background-color 0.3s ease-in-out;
         }
 
-        /* Disabled button - greyed out */
         .btn-custom:disabled {
-            background-color: #b0b0b0; /* Grey color */
+            background-color: #b0b0b0; 
             cursor: not-allowed;
         }
 
-        /* Enabled button - original color */
         .btn-custom.enabled {
             background-color: rgb(97, 48, 156);
         }
@@ -74,7 +68,6 @@
         let confirmPassword = document.getElementById("confirm_password").value;
         let submitBtn = document.getElementById("registerBtn");
 
-        // Check if passwords match
         if (password !== "" && confirmPassword !== "" && password !== confirmPassword) {
             document.getElementById("passwordError").style.display = "block";
             submitBtn.disabled = true;
@@ -84,7 +77,6 @@
             document.getElementById("passwordError").style.display = "none";
         }
 
-        // Enable button only if all fields are filled
         if (name && email && password && confirmPassword) {
             submitBtn.disabled = false;
             submitBtn.classList.add("enabled");

@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const todoTime = document.getElementById("todoTime");
     const todoList = document.getElementById("todoList");
 
-    // Load tasks from localStorage
     function loadTasks() {
         todoList.innerHTML = "";
         const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
@@ -13,12 +12,10 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Save tasks to localStorage
     function saveTasks(tasks) {
         localStorage.setItem("tasks", JSON.stringify(tasks));
     }
 
-    // Add task to DOM
     function addTaskToDOM(text, time, index) {
         const li = document.createElement("li");
         li.className = "list-group-item d-flex justify-content-between align-items-center";
@@ -27,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
         todoList.appendChild(li);
     }
 
-    // Handle form submission
     todoForm.addEventListener("submit", function (e) {
         e.preventDefault();
         const text = todoInput.value.trim();
@@ -42,7 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Delete task function
     window.deleteTask = function (index) {
         let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
         tasks.splice(index, 1);
@@ -50,6 +45,5 @@ document.addEventListener("DOMContentLoaded", function () {
         loadTasks();
     };
 
-    // Load tasks on page load
     loadTasks();
 });
