@@ -4,32 +4,379 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomodoro Timer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='pomodoro.css') }}">
-    <script defer src="{{ url_for('static', filename='pomodoro.js') }}"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Pompiere&display=swap&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://i.pinimg.com/originals/2a/be/e4/2abee4e7a6adacf15aa8ee6c8931c92e.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            color: #333;
+            display: flex;
+            margin: 0;
+            transition: all 0.3s ease;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background-color: rgba(255, 255, 255, 0.85);
+            width: 80px;
+            padding: 10px;
+            border-radius: 15px;
+            margin-top: 10px;
+            position: fixed;
+            transition: all 0.3s ease;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .sidebar:hover {
+            width: 250px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar ul li a,
+        .logout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgb(97, 48, 156);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 10px 15px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .sidebar ul li a i,
+        .logout i {
+            font-size: 20px;
+        }
+
+        .sidebar ul li a span,
+        .logout span {
+            display: none;
+            margin-left: 10px;
+        }
+
+        .sidebar:hover ul li a,
+        .sidebar:hover .logout {
+            justify-content: flex-start;
+            padding-left: 15px;
+        }
+
+        .sidebar:hover ul li a span,
+        .sidebar:hover .logout span {
+            display: inline-block;
+        }
+
+        .logout {
+            margin-top: auto;
+            position: relative;
+            bottom: 40px;
+        }
+
+        /* Content */
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            margin-left: 80px;
+            margin-top: 20px;
+            transition: margin-left 0.3s ease;
+            width: calc(100% - 80px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sidebar:hover + .content {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 10px 20px;
+            border-radius: 15px;
+            width: 100%;
+        }
+
+        .top-bar-title {
+            font-family: 'Pompiere', sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: rgb(97, 48, 156);
+        }
+
+        .container {
+            width: 100%;
+            margin-top: 20px;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .timer {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 30px;
+            position: relative;
+            display: inline-block;
+            width: 300px;
+            height: 300px;
+            line-height: 300px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .timer h1 {
+            font-size: 75px;
+            color: rgb(97, 48, 156);
+            font-family: 'Orbitron', sans-serif;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .btn-custom {
+            background-color: rgb(97, 48, 156);
+            border: none;
+            color: white;
+            border-radius: 8px;
+            padding: 8px 16px;
+            width: auto;
+            margin: 5px;
+        }
+
+        .btn-custom:hover {
+            background-color: rgb(75, 35, 120);
+        }
+
+        .btn-secondary {
+            background-color: rgb(97, 48, 156);
+            border: none;
+            color: white;
+            border-radius: 8px;
+            padding: 8px 16px;
+            width: auto;
+            margin: 5px;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgb(75, 35, 120);
+        }
+
+        .btn-success {
+            background-color: rgb(97, 48, 156);
+            border: none;
+            color: white;
+            border-radius: 8px;
+            padding: 8px 16px;
+            width: auto;
+            margin: 5px;
+        }
+
+        .btn-success:hover {
+            background-color: rgb(75, 35, 120);
+        }
+
+        .btn-danger {
+            background-color: rgb(97, 48, 156);
+            border: none;
+            color: white;
+            border-radius: 8px;
+            padding: 8px 16px;
+            width: auto;
+            margin: 5px;
+        }
+
+        .btn-danger:hover {
+            background-color: rgb(75, 35, 120);
+        }
+
+        .timer-message-box {
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 18px;
+            color: rgb(97, 48, 156);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                margin-top: 0;
+            }
+
+            .content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .container {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .timer {
+                width: 200px;
+                height: 200px;
+                line-height: 200px;
+            }
+
+            .timer h1 {
+                font-size: 50px;
+            }
+        }
+    </style>
 </head>
 <body>
-
-    <div class="topbar">
-        <a href="/dashboard" class="btn btn-outline-light">Dashboard</a>
-        <span class="feature-name">Pomodoro Timer</span>
-        <a href="/logout" class="btn btn-outline-light">Logout</a>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <ul>
+            <li><a href="/dashboard"><i class="fa-solid fa-house"></i><span> Dashboard</span></a></li>
+            <li><a href="/sticky_notes"><i class="fa-solid fa-note-sticky"></i><span> Sticky Notes</span></a></li>
+            <li><a href="/todo"><i class="fa-solid fa-list-check"></i><span> To-Do List</span></a></li>
+            <li><a href="/chatbot"><i class="fa-solid fa-robot"></i><span> Chatbot</span></a></li>
+            <li><a href="/generate_quiz"><i class="fa-solid fa-question-circle"></i><span> Quiz Generator</span></a></li>
+            <li><a href="/pomodoro" class="active"><i class="fa-solid fa-clock"></i><span> Pomodoro Timer</span></a></li>
+            <li><a href="#" id="darkModeToggle"><i class="fa-solid fa-moon"></i><span> Dark Mode</span></a></li>
+        </ul>
+        <a href="/logout" class="logout"><i class="fa-solid fa-sign-out-alt"></i><span> Logout</span></a>
     </div>
 
+    <!-- Pomodoro Timer Content -->
     <div class="content">
-        <h2>Pomodoro Timer</h2>
-        <p id="timer-message">Start your Pomodoro session!</p>
-        <div class="timer">
-            <h1 id="time-display">25:00</h1>
-            <button id="start-btn" class="btn btn-primary">Start</button>
-            <button id="reset-btn" class="btn btn-secondary">Reset</button>
+        <div class="top-bar">
+            <h3 class="top-bar-title">Pomodoro Timer</h3>
         </div>
-        
-        <div id="button-container" style="display: none; margin-top: 10px;">
-            <button id="restart-btn" class="btn btn-success">Start Over</button>
-            <button id="cancel-btn" class="btn btn-danger">Cancel</button>
+        <div class="container mt-4">
+            <div class="timer-message-box">
+                <p id="timer-message">Start your Pomodoro session!</p>
+            </div>
+            <div class="timer">
+                <h1 id="time-display">25:00</h1>
+            </div>
+            <div class="button-container mt-3">
+                <button id="start-btn" class="btn btn-custom">Start</button>
+                <button id="reset-btn" class="btn btn-secondary">Reset</button>
+            </div>
+            
+            <!-- Restart & Cancel Buttons (Hidden Initially) -->
+            <div id="button-container" style="display: none; margin-top: 10px;">
+                <button id="restart-btn" class="btn btn-success">Start Over</button>
+                <button id="cancel-btn" class="btn btn-danger">Cancel</button>
+            </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let workTime = 25 * 60;  // 25 minutes
+            let breakTime = 5 * 60;  // 5 minutes
+            let timeLeft = workTime;
+            let isBreak = false;
+            let timerInterval = null;
+
+            const timeDisplay = document.getElementById("time-display");
+            const startBtn = document.getElementById("start-btn");
+            const resetBtn = document.getElementById("reset-btn");
+            const message = document.getElementById("timer-message");
+            const restartBtn = document.getElementById("restart-btn");
+            const cancelBtn = document.getElementById("cancel-btn");
+            const buttonContainer = document.getElementById("button-container");
+
+            function updateDisplay() {
+                let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+                timeDisplay.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+            }
+
+            function startTimer() {
+                if (timerInterval === null) {
+                    timerInterval = setInterval(() => {
+                        if (timeLeft > 0) {
+                            timeLeft--;
+                            updateDisplay();
+                        } else {
+                            clearInterval(timerInterval);
+                            timerInterval = null;
+
+                            if (!isBreak) {
+                                isBreak = true;
+                                timeLeft = breakTime;
+                                message.textContent = "Break Time! Relax for 5 minutes.";
+                            } else {
+                                message.textContent = "Pomodoro Session Complete!";
+                                buttonContainer.style.display = "block"; // Show restart/cancel buttons
+                                return;
+                            }
+
+                            updateDisplay();
+                            startTimer();  // Automatically start break timer
+                        }
+                    }, 1000);
+                }
+            }
+
+            function resetTimer() {
+                clearInterval(timerInterval);
+                timerInterval = null;
+                isBreak = false;
+                timeLeft = workTime;
+                updateDisplay();
+                message.textContent = "Start your Pomodoro session!";
+                buttonContainer.style.display = "none"; // Hide restart/cancel buttons
+            }
+
+            function restartSession() {
+                resetTimer();
+                startTimer();
+            }
+
+            function cancelSession() {
+                resetTimer();
+                message.textContent = "Session canceled. Start a new one anytime.";
+            }
+
+            startBtn.addEventListener("click", startTimer);
+            resetBtn.addEventListener("click", resetTimer);
+            restartBtn.addEventListener("click", restartSession);
+            cancelBtn.addEventListener("click", cancelSession);
+
+            updateDisplay();
+        });
+    </script>
 
 </body>
 </html>
