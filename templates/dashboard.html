@@ -5,56 +5,160 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pompiere&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
     <script defer src="{{ url_for('static', filename='dashboard.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+
+    <style>
+        /* Background Image */
+        /* Ensure body takes full height */
+/* Background Image */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: url('https://i.pinimg.com/originals/2a/be/e4/2abee4e7a6adacf15aa8ee6c8931c92e.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Semi-transparent Overlay */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4); /* 40% opacity */
+    z-index: 1;
+}
+
+/* Ensure content is above the overlay */
+.container, .logout-btn {
+    position: relative;
+    z-index: 2;
+}
+
+
+
+        /* Logout Button - No White Space */
+        .logout-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 8px 12px;
+            font-size: 16px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .logout-btn i {
+            margin-right: 5px;
+        }
+
+        /* Welcome Section */
+        .welcome-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 80vh; /* Move content higher */
+            margin-top: 2rem;
+        }
+
+        /* Ensure Pompiere font for Welcome text */
+.welcome-text {
+    font-size: 3rem;
+    font-family: 'Pompiere', sans-serif;
+    color: white;
+    text-align: center;
+    font-weight: normal; /* Ensures the thin, elegant look */
+}
+
+        /* Dashboard Cards */
+        .card {
+            transition: transform 0.3s ease-in-out;
+            border: none;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Ensuring normal font weight for icons */
+        .card i {
+            font-weight: normal;
+        }
+    </style>
 </head>
 <body>
 
-    <div class="sidebar">
-        <ul>
-            <li><a href="/dashboard"><i class="fa-solid fa-house"></i><span> Dashboard</span></a></li>
-            <li>
-                <a href="/sticky_notes">
-                    <i class="fa-solid fa-note-sticky"></i>
-                    <span>Sticky Notes</span>
+    <!-- Logout Button in Top Right -->
+    <a href="/logout" class="logout-btn">
+        <i class="fa-solid fa-sign-out-alt"></i> Logout
+    </a>
+
+    <!-- Adjusted Welcome Section -->
+    <div class="container d-flex flex-column align-items-center welcome-container">
+        <h2 class="welcome-text">Welcome, {{ user }}</h2>
+
+        <!-- Dashboard Cards -->
+        <div class="row g-4 mt-4 text-center">
+            <div class="col-md-4">
+                <a href="/sticky_notes" class="text-decoration-none">
+                    <div class="card shadow-sm p-4 text-white" style="background-color: #d8b4fe;">
+                        <i class="fa-solid fa-note-sticky fa-2x"></i>
+                        <h5 class="mt-3">Sticky Notes</h5>
+                    </div>
                 </a>
-            </li>
-            <li><a href="/todo"><i class="fa-solid fa-list-check"></i><span> To-Do List</span></a></li>
+            </div>
+
+            <div class="col-md-4">
+                <a href="/todo" class="text-decoration-none">
+                    <div class="card shadow-sm p-4 text-white" style="background-color: #c084fc;">
+                        <i class="fa-solid fa-list-check fa-2x"></i>
+                        <h5 class="mt-3">To-Do List</h5>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="/generate_quiz" class="text-decoration-none">
+                    <div class="card shadow-sm p-4 text-white" style="background-color: #a855f7;">
+                        <i class="fa-solid fa-book fa-2x"></i>
+                        <h5 class="mt-3">Quiz Generator</h5>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="/pomodoro" class="text-decoration-none">
+                    <div class="card shadow-sm p-4 text-white" style="background-color: #9333ea;">
+                        <i class="fa-solid fa-clock fa-2x"></i>
+                        <h5 class="mt-3">Pomodoro Timer</h5>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="/chatbot" class="text-decoration-none">
+                    <div class="card shadow-sm p-4 text-white" style="background-color: #7e22ce;">
+                        <i class="fa-solid fa-robot fa-2x"></i>
+                        <h5 class="mt-3">Chatbot</h5>
+                    </div>
+                </a>
+            </div>
+
             
-            <li>
-                <a href="/generate_quiz">
-                    <i class="fa-solid fa-book"></i>
-                    <span> Quiz Generator</span>
-                </a>
-            </li>
-    
-            <li>
-                <a href="/pomodoro">
-                    <i class="fa-solid fa-clock"></i>
-                    <span> Pomodoro Timer</span>
-                </a>
-            </li>
-    
-            <li><a href="/chatbot"><i class="fa-solid fa-robot"></i><span> Chatbot</span></a></li>
-            <li>
-                <a href="#" id="darkModeToggle">
-                    <i class="fa-solid fa-moon"></i>
-                    <span> Dark Mode</span>
-                </a>
-            </li>
-            
-            <li><a href="/logout" class="logout"><i class="fa-solid fa-sign-out-alt"></i><span> Logout</span></a></li>
-        </ul>
+        </div>
     </div>
-    
 
-    <div class="content">
-        <h2>Welcome, {{ user }}</h2>
-
-
-        
-    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
