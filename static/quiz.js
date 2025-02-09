@@ -63,5 +63,3 @@ function showAnswer(answerId) {
         answerElement.style.display = "none";
     }
 }
-
-
