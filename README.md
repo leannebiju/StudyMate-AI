@@ -32,12 +32,12 @@ Students face challenges in organizing their study schedules, tracking tasks, an
 ### Technologies/Components Used
 Here’s the list of software, libraries, and tools used in your project:
 
-## **Software:**
+ **Software:**
 - **Frontend:** HTML, CSS, JavaScript
 - **Backend:** Flask
 - **Database:** SQLite
 
-## **Libraries Used:**
+ **Libraries Used:**
 - **Flask:** For creating the web application
 - **Flask-CORS:** To handle cross-origin requests
 - **SQLite3:** For managing user authentication and storing notes
@@ -47,7 +47,7 @@ Here’s the list of software, libraries, and tools used in your project:
 - **re (Regex):** For parsing AI-generated quiz responses
 - **jsonify & flash:** For handling API responses and displaying messages
 
-## **Tools Used:**
+ **Tools Used:**
 - **Postman:** For API testing
 - **VS Code / PyCharm:** For development
 - **Git & GitHub:** For version control
