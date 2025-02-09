@@ -114,7 +114,8 @@ python app.py
 For Software:
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
+![![WhatsApp Image 2025-02-09 at 10 08 19_88a9af17](https://github.com/user-attachments/assets/011f83ae-989e-4697-b498-cddb0c5bcc6c)
+](Add screenshot 1 here with proper name)
 *Add caption explaining what this shows*
 
 ![Screenshot2](Add screenshot 2 here with proper name)
