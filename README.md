@@ -119,7 +119,8 @@ For Software:
 Home page
 *The Home Page displays the project name prominently, along with Login and Register buttons, allowing users to access or create an account to utilize the platform’s features.*
 
-![![WhatsApp Image 2025-02-09 at 10 09 16_821f15ff](![WhatsApp Image 2025-02-09 at 10 09 01_d0a1fcb0](https://github.com/user-attachments/assets/18f8fdc4-1029-4598-b7d1-0d64e1507e3b))]
+![![WhatsApp Image 2025-02-09 at 10 09 16_821f15ff](![WhatsApp Image 2025-02-09 at 10 09 01_d0a1fcb0](https://github.com/user-attachments/assets/18f8fdc4-1029-4598-b7d1-0d64e1507e3b)
+]
 Register Page
 *The Register Page allows new users to create an account by entering their Name, Email, Password, and Confirm Password, ensuring secure authentication and access to the platform.*
 
