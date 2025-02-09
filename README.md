@@ -169,9 +169,9 @@ Pomodoro Timer
 
 
 ## Team Contributions
-- [Christina Jogy]: [Frontend]
-- [Leanne Roslyn Biju]: [Frontend]
-- [Anusree U]: [Backend]
+- Christina Jogy: Frontend
+- Leanne Roslyn Biju: Frontend
+- Anusree U: Backend
 
 ---
 Made with ❤️ at TinkerHub
