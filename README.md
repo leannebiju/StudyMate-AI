@@ -11,7 +11,7 @@
 - Member 3: Christina Jogy - CUSAT
 
 ### Hosted Project Link
-[[mention your project hosted project link here]
+[[StudyMate - AI]
 ](https://studymate-ai.onrender.com/)
 ### Project Description
 [2-3 lines about what your project does]
