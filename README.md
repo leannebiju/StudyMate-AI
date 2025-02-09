@@ -115,15 +115,12 @@ For Software:
 
 # Screenshots (Add at least 3)
 ![![WhatsApp Image 2025-02-09 at 10 09 23_9a2cbe70](https://github.com/user-attachments/assets/fe199192-044f-47e8-89bc-1cbddf6f04b6)
-
 ]
 Home page
 *The Home Page displays the project name prominently, along with Login and Register buttons, allowing users to access or create an account to utilize the platform’s features.*
 
-![![WhatsApp Image 2025-02-09 at 10 09 16_821f15ff](![WhatsApp Image 2025-02-09 at 10 09 01_d0a1fcb0](https://github.com/user-attachments/assets/18f8fdc4-1029-4598-b7d1-0d64e1507e3b)
-)
-]
-(Register Page)
+![![WhatsApp Image 2025-02-09 at 10 09 16_821f15ff](![WhatsApp Image 2025-02-09 at 10 09 01_d0a1fcb0](https://github.com/user-attachments/assets/18f8fdc4-1029-4598-b7d1-0d64e1507e3b))]
+Register Page
 *The Register Page allows new users to create an account by entering their Name, Email, Password, and Confirm Password, ensuring secure authentication and access to the platform.*
 
 ![![WhatsApp Image 2025-02-09 at 10 09 16_fc73ae4a](https://github.com/user-attachments/assets/41d105bd-e7f9-45f5-a8d5-6aefbff2658c)
@@ -143,7 +140,8 @@ Dashboard
 5. **Pomodoro Timer** – Improve focus with structured study intervals.*
 
 ![![WhatsApp Image 2025-02-09 at 10 08 19_fce8ffb4](https://github.com/user-attachments/assets/1afae3bd-426e-4f39-ae17-db5a0e06ac33)
-](Sticky Notes)
+]
+Sticky Notes
 *The Sticky Notes feature allows users to create, edit, and manage digital notes efficiently. Users can add important points, reminders, or study-related content, ensuring quick access and organization. Notes are visually represented as sticky cards for easy reference.*
 
 ![![WhatsApp Image 2025-02-09 at 10 11 28_c14bf8f9](https://github.com/user-attachments/assets/8ea792d2-5506-4a8b-8cbb-c02b1313b88c)
@@ -166,46 +164,14 @@ Quiz Generator
 Pomodoro Timer
 *The Pomodoro Timer helps users stay focused by implementing the Pomodoro technique, featuring a countdown timer with start, pause, and reset options.*
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
-# Diagrams
-![Workflow](Add your workflow/architecture diagram here)
-*Add caption explaining your workflow*
-
-For Hardware:
-
-# Schematic & Circuit
-![Circuit](Add your circuit diagram here)
-*Add caption explaining connections*
-
-![Schematic](Add your schematic diagram here)
-*Add caption explaining the schematic*
-
-# Build Photos
-![Team](Add photo of your team here)
 
 
-![Components](Add photo of your components here)
-*List out all components shown*
 
-![Build](Add photos of build process here)
-*Explain the build steps*
-
-![Final](Add photo of final product here)
-*Explain the final build*
-
-### Project Demo
-# Video
-[Add your demo video link here]
-*Explain what the video demonstrates*
-
-# Additional Demos
-[Add any extra demo materials/links]
 
 ## Team Contributions
-- [Name 1]: [Specific contributions]
-- [Name 2]: [Specific contributions]
-- [Name 3]: [Specific contributions]
+- [Christina Jogy]: [Frontend]
+- [Leanne Roslyn Biju]: [Frontend]
+- [Anusree U]: [Backend]
 
 ---
 Made with ❤️ at TinkerHub
