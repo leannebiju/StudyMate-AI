@@ -14,42 +14,101 @@
 [[StudyMate - AI]
 ](https://studymate-ai.onrender.com/)
 ### Project Description
-[2-3 lines about what your project does]
+StudyMate - AI is an intelligent study planner designed to enhance learning efficiency. It includes features like sticky notes, a to-do list, a quiz generator, a Pomodoro timer, and an AI chatbot for doubt-solving. With AI-powered assistance, it helps students stay organized and improve productivity.
 
 ### The Problem statement
-Students face challenges in managing their study schedules, revising effectively, and finding quick answers to their doubts. Traditional learning methods often lead to inefficient time management and difficulty in retaining information.
+Students face challenges in organizing their study schedules, tracking tasks, and revising effectively. Traditional learning methods often result in poor time management and inefficient study habits. Finding quick answers to doubts can be difficult, leading to delays in learning. A smarter, AI-powered solution is needed to enhance productivity and retention.
 
 
 ### The Solution
-StudyMate AI solves this by integrating AI-powered learning tools to enhance productivity and engagement. It offers:
 
-Flashcards for quick and effective revision.
-To-Do Lists to track study goals and tasks.
-AI-Powered Quiz Generator for interactive self-assessment.
-AI Chatbot for instant doubt resolution.
-Dark/Light Mode Toggle for a personalized learning experience.
-With StudyMate AI, students can plan, learn, and revise smarter, making studying more effective and enjoyable.
+1. **Sticky Notes 📝** – Helps students quickly jot down important points, reminders, and concepts, reducing the chances of forgetting key information.  
+2. **To-Do List ✅** – Enables students to organize tasks, set priorities, and track progress, ensuring better time management.  
+3. **Quiz Generator ❓** – Uses AI to generate topic-based quizzes, helping students test their knowledge and reinforce learning effectively.  
+4. **Pomodoro Timer ⏳** – Implements the Pomodoro technique to improve focus, reduce procrastination, and enhance productivity.  
+5. **AI Chatbot 🤖** – Provides instant AI-powered doubt resolution, offering explanations and guidance to facilitate quick and effective learning.
 
 ## Technical Details
 ### Technologies/Components Used
-For Software:
-- HTML, CSS, JavaScript
-- Flask
-- [Libraries used]
-- [Tools used]
+Here’s the list of software, libraries, and tools used in your project:
 
-For Hardware:
-- [List main components]
-- [List specifications]
-- [List tools required]
+## **Software:**
+- **Frontend:** HTML, CSS, JavaScript
+- **Backend:** Flask
+- **Database:** SQLite
+
+## **Libraries Used:**
+- **Flask:** For creating the web application
+- **Flask-CORS:** To handle cross-origin requests
+- **SQLite3:** For managing user authentication and storing notes
+- **Werkzeug.security:** For hashing and verifying passwords
+- **Google Generative AI (Gemini API):** For AI-powered quiz generation, doubt-solving, and flashcard generation
+- **dotenv:** For managing environment variables securely
+- **re (Regex):** For parsing AI-generated quiz responses
+- **jsonify & flash:** For handling API responses and displaying messages
+
+## **Tools Used:**
+- **Postman:** For API testing
+- **VS Code / PyCharm:** For development
+- **Git & GitHub:** For version control
+- **Google Gemini API:** For AI-powered features
+
+
+
 
 ### Implementation
-For Software:
-# Installation
-[commands]
+### **Software Requirements**  
+
+#### **Installation Steps**  
+
+1. **Install Python and Virtual Environment**  
+   - Update system packages and install Python:  
+     ```bash
+     sudo apt update && sudo apt install python3 python3-venv python3-pip -y
+     ```  
+
+2. **Set Up Virtual Environment**  
+   - Create a virtual environment:  
+     ```bash
+     python3 -m venv venv
+     ```  
+   - Activate the virtual environment:  
+     ```bash
+     source venv/bin/activate   # On Windows: venv\Scripts\activate
+     ```  
+
+3. **Install Required Python Libraries**  
+   - Install Flask and CORS:  
+     ```bash
+     pip install flask flask-cors
+     ```  
+   - Install LangChain and Gemini AI API:  
+     ```bash
+     pip install langchain google-generativeai
+     ```  
+
+4. **Frontend Setup (If Required)**  
+   - Install dependencies using Node.js:  
+     ```bash
+     npm install
+     ```  
+
+5. **Run the Backend Server**  
+   - Start the Flask application:  
+     ```bash
+     python app.py
+     ```  
+
+6. **Run the Frontend**  
+   - Start the frontend using a live server:  
+     ```bash
+     npx live-server  
+     ```  
+  
+
 
 # Run
-[commands]
+python app.py
 
 ### Project Documentation
 For Software:
