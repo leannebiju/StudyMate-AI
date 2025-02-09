@@ -116,19 +116,24 @@ For Software:
 # Screenshots (Add at least 3)
 ![![WhatsApp Image 2025-02-09 at 10 09 23_9a2cbe70](https://github.com/user-attachments/assets/fe199192-044f-47e8-89bc-1cbddf6f04b6)
 
-](Home page)
+]
+Home page
 *The Home Page displays the project name prominently, along with Login and Register buttons, allowing users to access or create an account to utilize the platform’s features.*
 
-![![WhatsApp Image 2025-02-09 at 10 09 16_821f15ff](https://github.com/user-attachments/assets/6dc7ff87-5516-4d0e-8fa2-4393b478ad96)
-](Register Page)
+![![WhatsApp Image 2025-02-09 at 10 09 16_821f15ff](![WhatsApp Image 2025-02-09 at 10 09 01_d0a1fcb0](https://github.com/user-attachments/assets/18f8fdc4-1029-4598-b7d1-0d64e1507e3b)
+)
+]
+(Register Page)
 *The Register Page allows new users to create an account by entering their Name, Email, Password, and Confirm Password, ensuring secure authentication and access to the platform.*
 
 ![![WhatsApp Image 2025-02-09 at 10 09 16_fc73ae4a](https://github.com/user-attachments/assets/41d105bd-e7f9-45f5-a8d5-6aefbff2658c)
-](Login Page)
+]
+Login Page
 *The Login Page enables registered users to access their accounts by entering their Email and Password, ensuring secure authentication.*
 
 ![![WhatsApp Image 2025-02-09 at 10 15 02_07f0d68b](https://github.com/user-attachments/assets/0a9d0ed1-d4b2-4e61-b6f9-d0a4d9784977)
-](Dashboard)
+]
+Dashboard
 *The Dashboard provides users with a structured interface featuring five key functionalities, each represented as interactive boxes with icons:  
 
 1. **Sticky Notes** – Create, edit, and manage quick notes.  
@@ -142,19 +147,23 @@ For Software:
 *The Sticky Notes feature allows users to create, edit, and manage digital notes efficiently. Users can add important points, reminders, or study-related content, ensuring quick access and organization. Notes are visually represented as sticky cards for easy reference.*
 
 ![![WhatsApp Image 2025-02-09 at 10 11 28_c14bf8f9](https://github.com/user-attachments/assets/8ea792d2-5506-4a8b-8cbb-c02b1313b88c)
-](To-Do List)
+]
+To-Do List
 *The To-Do List feature helps users manage their tasks effectively by allowing them to add, edit, mark as completed, and delete tasks. It provides a structured way to track pending activities and stay organized.*
 
 ![![WhatsApp Image 2025-02-09 at 10 12 18_c4dd2379](https://github.com/user-attachments/assets/2e673859-c8c7-48d8-9314-c1e7febdeefe)
-](AI Chatbot)
+]
+AI Chatbot
 *The AI Chatbot assists users by answering queries, providing explanations, and offering study-related support. It leverages AI to deliver accurate and context-aware responses, enhancing the learning experience.*
 
 ![![WhatsApp Image 2025-02-09 at 10 13 23_618a232c](https://github.com/user-attachments/assets/19633c66-ac83-4a51-ab51-41b23b5f94ca)
-](Quiz Generator)
+]
+Quiz Generator
 *The Quiz Generator allows users to create AI-powered multiple-choice quizzes by selecting a topic and difficulty level. Users can view the correct answer only when they click the "Show Answer" button.*
 
 ![![WhatsApp Image 2025-02-09 at 10 14 46_c9b6f128](https://github.com/user-attachments/assets/85bc3c74-a54c-4f99-b8b2-b1c9227c67e3)
-](Pomodoro Timer)
+]
+Pomodoro Timer
 *The Pomodoro Timer helps users stay focused by implementing the Pomodoro technique, featuring a countdown timer with start, pause, and reset options.*
 
 ![Screenshot3](Add screenshot 3 here with proper name)
